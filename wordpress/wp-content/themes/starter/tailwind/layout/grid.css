@@ -1,0 +1,22 @@
+main#main{
+  @apply py-12;
+  &.pt-0{ padding-top:0 !important; }
+  &.pb-0{ padding-bottom:0 !important; }
+}
+.container{
+  @apply w-full !important;
+  @apply max-w-screen-lg !important;
+  &.container__narrow{
+    @apply max-w-screen-md !important;
+  }
+  &.container__supernarrow{
+    @apply max-w-screen-xs !important;
+  }
+  &.container__wide{
+    @apply max-w-screen-xl !important;
+  }
+  &.container__superwide{
+    @apply max-w-screen-2xl !important;
+  }
+}
+

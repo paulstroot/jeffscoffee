@@ -1,0 +1,267 @@
+/* COLORS, FONTS, PADDING and BORDERS */
+.nav-wrapper{
+  button.nav-link, a {
+    @apply font-serif;
+  }
+  &.open{
+    @apply mobile:top-[7.7rem];
+  }
+  @apply bg-gray-200 md:bg-white;
+  ul{
+    @apply pl-0 my-0;
+    li{
+      @apply mb-0;
+    }
+  }
+  > ul{
+    > li{
+      @apply border-b border-gray-400 md:border-0;
+      border-bottom-style:solid;
+    }
+    .sub-menu-wrap {
+      @apply bg-white;
+      @apply md:shadow-md;
+    }
+    a {
+      @apply text-dark w-full;
+      @apply hover:bg-accent focus:bg-accent;
+      @apply focus:outline-4 focus:outline-primary-dark;
+    }
+    button.nav-link, a {
+      font-size:inherit;
+      @apply px-4 py-2;
+    }
+    ul.sub-menu{
+      @apply m-0 pl-0;
+      button.nav-link, a {
+        @apply mobile:pl-12; /* Indent the sub-nav */
+      }
+    }
+    .arrow{
+      @apply border-none bg-transparent;
+    }
+    button.arrow:hover{
+      @apply bg-gray-400 md:bg-gray-200;
+    }
+    button.nav-link{
+      @apply md:pr-0 !important;
+    }
+    button.nav-link,
+    > li > a {
+      @apply text-black no-underline bg-transparent border-none;
+      @apply hover:bg-secondary;
+    }
+    button.nav-link,
+    > li > a,
+    .arrow{
+      @apply focus:outline-red-400 focus:outline-8;
+    }
+  }
+}
+/* END COLORS, FONTS, PADDING and BORDERS  */
+
+
+/* MOBILE HAMBURGER TOGGLE */
+.mobile-menu-toggle{
+  .hamburger > div{ transition:all 0.2s ease-in-out; }
+  &[aria-expanded="true"]{
+    .hamburger{
+      > div:nth-child(1){
+        transform: rotate(45deg) translateY(8px) translateX(8px);
+      }
+      > div:nth-child(3){
+        transform: rotate(-45deg) translateY(-9px) translateX(9px);
+      }
+      > div:nth-child(2){
+        opacity:0;
+      }
+    }
+  }
+}
+/* END MOBILE TOGGLE */
+
+
+.nav-wrapper {
+  @apply absolute hidden border right-0;
+  @apply md:relative md:flex md:flex-col-reverse md:items-end md:space-x-10 md:border-none md:bg-opacity-0;
+  @apply mobile:left-0 ;
+  &.open{
+    @apply mobile:block;
+  }
+  > ul {
+    @apply md:flex items-start;
+    > li {
+      @apply flex flex-col flex-wrap relative justify-between;
+      > a{
+        @apply flex-1 block w-auto;
+      }
+      &.menu-item-has-children{
+        a, button.nav-link{
+          white-space: normal;
+          text-align: left;
+        }
+      }
+    }
+    ul.sub-menu {
+      @apply w-full;
+      li{
+        @apply mb-0 list-none;
+      }
+      a {
+        @apply block w-auto ;
+      }
+    }
+
+  }
+}
+
+
+/* These style aply to the "Disclosure nav", which shows/hides sub-menus when the arrow is clicked. */
+/* if your navigation does not have drop-down menus, you can delete these styles */
+.disclosure-nav {
+  .nav-wrapper > ul {
+    @apply items-center;
+    > li{
+      @apply md:flex-row md:items-center ;
+      &:last-child ul.sub-menu-wrap{
+        @apply right-0; /* so the menu doesn't go off the right edge of the screen */
+      }
+    }
+    .sub-menu-wrap {
+      @apply hidden;
+      @apply w-full md:w-auto;
+      @apply top-full;
+      @apply md:absolute md:min-w-[200px];
+      a {
+        @apply md:whitespace-nowrap;
+      }
+      a, button.nav-link{
+        @apply mobile:pr-12; /* keeps the arrow from overlapping the text */
+      }
+    }
+    button[aria-expanded="true"] {
+      .arrow, &.arrow{
+        transform:rotate(180deg);
+      }
+    }
+    .arrow{
+      @apply absolute right-0 m-0 top-[0.9rem];
+
+      @apply w-6 h-6 p-4;
+      @apply bg-no-repeat bg-center;
+      @apply md:-my-4 md:relative md:top-0;
+      background-image: url('data:image/svg+xml,<svg fill="%23000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xml:space="preserve"><path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/></svg>');
+      background-size: 0.9em;
+    }
+    button.arrow{
+      @apply rounded-full ;
+      font-size:inherit;
+    }
+
+    button.nav-link,
+    > li > a {
+      font-size:inherit;
+      @apply w-full md:w-auto;
+      @apply items-center flex whitespace-nowrap  ;
+    }
+
+    button.nav-link .arrow{
+      @apply mobile:top-4 mobile:p-0 mobile:pr-2;
+      pointer-events:none;
+    }
+  }
+  .sub-menu-wrap:not(.loaded){
+    display:none;
+  }
+
+  /*
+  Set this class on the containing "nav" element if you would like the nav-menus to open on focus instead of hover.
+  This will not only open the sub-menu on click, but when tabbing through with a keyboard
+  (note: there may need to be some javascript work to get arai-expanded=true )
+  */
+  &.open-on-focus{
+    .sub-menu-wrap{
+      @apply block !important;
+      @apply h-0 opacity-0 overflow-hidden;
+      @apply w-full md:w-auto;
+    }
+    ul li:focus-within{
+      .sub-menu-wrap{
+        @apply h-auto;
+        @apply opacity-100;
+      }
+
+      button{
+        .arrow, &.arrow{
+          transform:rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+/* Some styling of individual navigations */
+#menu-primary-nav{
+  li{
+    @apply text-lg;
+  }
+}
+
+#menu-utility-nav{
+  @apply bg-gray-400;
+  @apply md:bg-opacity-0;
+  li{
+    @apply text-sm;
+    a, button.nav-link{
+      @apply py-1;
+    }
+    button.nav-link .arrow{
+      @apply mobile:top-0 ;
+    }
+  }
+}
+
+ul.footer-nav{
+  @apply flex;
+  a{
+    @apply text-white px-3 py-1
+  }
+}
+
+
+/* Scroll up/down styles */
+.logo img,
+header#header > .container,
+.nav-wrapper > ul a{ transition:all 0.2s ease-in-out; }
+
+
+body.scrolled{
+  .logo img{
+    width:50px !important;
+  }
+  header#header > .container{
+    @apply py-0;
+  }
+  #menu-primary-nav > li > button.nav-link span,
+  #menu-primary-nav > li > a{
+    @apply py-0; font-size:16px;
+  }
+}
+
+
+header#header {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(0%);
+}
+body.scrolling-down{
+  header#header {
+    transform: translateY(-100%);
+  }
+}

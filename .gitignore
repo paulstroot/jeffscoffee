@@ -1,0 +1,45 @@
+.Rbuildignore
+.deploy-wordpress-localhost.Rproj
+.Rproj.user
+.Rhistory
+.RData
+.DS_Store
+
+wordpress/*
+!wordpress/.keep
+
+# If saving a project to github for a new project, uncomment the lines below to check in your updates. All wordpress core files will be re-generated when the site is spun-up by a new developer.
+wordpress/*
+!wordpress/.htaccess
+!wordpress/wp-config.php
+!wordpress/wp-content/
+wordpress/wp-content/*
+!wordpress/wp-content/uploads/
+!wordpress/wp-content/themes/
+wordpress/wp-content/themes/*
+!wordpress/wp-content/themes/starter/
+!wordpress/wp-content/themes/starter/*
+
+# Ignore all plug-ins that are loaded with wp-cli in ./wpcli/Makefile.theme
+# As you add plug-ins to your site, add them to wpcli/Makefile.theme AND to the gitignore. This will prevent the need to store plug-in files in github.
+!wordpress/wp-content/plugins/
+wordpress/wp-content/plugins/advanced-custom-fields
+wordpress/wp-content/plugins/better-search-replace
+wordpress/wp-content/plugins/broken-link-checker
+wordpress/wp-content/plugins/enable-media-replace
+wordpress/wp-content/plugins/formidable
+wordpress/wp-content/plugins/google-analytics-for-wordpress
+wordpress/wp-content/plugins/regenerate-thumbnails
+wordpress/wp-content/plugins/sucuri-scanner
+wordpress/wp-content/plugins/updraftplus
+wordpress/wp-content/plugins/wp-super-cache
+wordpress/wp-content/plugins/wordpress-seo
+
+logs/nginx/*
+!logs/nginx/.keep
+
+_trash
+*.Rproj
+
+legacy 2
+
